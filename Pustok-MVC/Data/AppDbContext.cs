@@ -19,5 +19,11 @@ namespace Pustok_MVC.Data
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Feature> Features { get; set; }
         public DbSet<Setting> Settings { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<BookTag>().HasKey(x => new { x.BookId, x.TagId });
+        }
     }
 }

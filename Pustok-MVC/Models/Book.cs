@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Pustok_MVC.Attributes;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pustok_MVC.Models
 {
@@ -18,9 +19,25 @@ namespace Pustok_MVC.Models
         public bool StockStatus { get; set; }
         public bool IsFeatured { get; set; }
         public bool IsNew { get; set; }
-        public List<BookImage> BookImages { get; set; }
+        [NotMapped]
+        [MaxSize(2*1024*1024)]
+        [CheckImageContent("image/png","image/jpeg")]
+        public IFormFile? PosterFile { get; set; }
+        [NotMapped]
+        [MaxSize(2 * 1024 * 1024)]
+        [CheckImageContent("image/png", "image/jpeg")]
+        public IFormFile? HoverPosterFile { get; set; }
+
+        [NotMapped]
+        [MaxSize(2 * 1024 * 1024)]
+        [CheckImageContent("image/png","image/jpeg")]
+        public List<IFormFile>? ImageFiles { get; set; } = new List<IFormFile>();
+
+        public List<BookImage>? BookImages { get; set; } = new List<BookImage>();
         public Author? Author { get; set; }
         public Genre? Genre { get; set; }
         public List<BookTag> BookTags { get; set; }
+        [NotMapped]
+        public List<int>? TagIds { get; set; } = new List<int>();
     }
 }

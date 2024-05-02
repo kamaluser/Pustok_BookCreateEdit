@@ -26,5 +26,21 @@
             }
             return false;
         }
+
+        public static void DeleteAll(string rootPath, string folder, List<string> fileNames)
+        {
+            foreach (var fileName in fileNames)
+            {
+                string path = Path.Combine(rootPath, folder, fileName);
+
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
+
+            }
+
+
+        }
     }
 }

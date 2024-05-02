@@ -11,18 +11,28 @@ namespace Pustok_MVC.Attributes
         }
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            IFormFile? file = value as IFormFile;
 
-            if ((file != null))
+            List<IFormFile> fileList = new List<IFormFile>();
+
+            if (value is List<IFormFile> files) fileList = files;
+            else if (value is IFormFile file) fileList.Add(file);
+
+
+            foreach (var file in fileList)
             {
-                if (file.Length > _byteSize)
+                if ((file != null))
                 {
-                    double mb = _byteSize / 1024d / 1024d;
-                    return new ValidationResult($"File must be less or equal than {mb.ToString("0.##")}mb");
+                    if (file.Length > _byteSize)
+                    {
+                        double mb = _byteSize / 1024d / 1024d;
+                        return new ValidationResult($"File must be less or equal than {mb.ToString("0.##")}mb");
+                    }
                 }
             }
 
+
             return ValidationResult.Success;
+
         }
     }
 }

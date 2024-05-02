@@ -38,6 +38,11 @@
                     <select asp-for="GenreId" class="form-control" id="GenreId" asp-items="@(new SelectList(ViewBag.Genres,nameof(Genre.Id),nameof(Genre.Name)))">
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="AuthorId">Tags</label>
+                    <select asp-for="TagIds" class="form-control" id="TagIds" asp-items="@(new SelectList(ViewBag.Tags,nameof(Tag.Id),nameof(Tag.Name)))">
+                    </select>
+                </div>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
@@ -94,6 +99,38 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="imgInput">PosterFile</label>
+                            <input asp-for="PosterFile" class="form-control imgInput" placeholder=" ">
+                            <div class="preview-box">
+                                <img width="200" class="previewImg" src="~/manage/uploads/books/@Model.BookImages.FirstOrDefault(x=>x.PosterStatus==true)?.Name" />
+                            </div>
+                            <span class="text-danger" asp-validation-for="PosterFile"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="imgInput">HoverPosterFile</label>
+                            <input asp-for="HoverPosterFile" class="form-control imgInput" placeholder=" ">
+                            <div class="preview-box">
+                                <img width="200" class="previewImg" src="~/manage/uploads/books/@Model.BookImages.FirstOrDefault(x=>x.PosterStatus==false)?.Name />
+                            </div>
+                            <span class="text-danger" asp-validation-for="HoverPosterFile"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="imgInput">ImageFiles</label>
+                    <input asp-for="ImageFiles" class="form-control imgInput" placeholder=" ">
+                    <div class="preview-box">
+                            @foreach (var item in Model.BookImages.Where(x => x.PosterStatus == null))
+                            {
+                            <img width="200" class="previewImg" src="~/manage/uploads/books/@item.Name" />
+                            }
+                    </div>
+                    <span class="text-danger" asp-validation-for="ImageFiles"></span>
+                </div>
+
 
                 <button class="btn btn-primary" type="submit">
                     Edit Book

@@ -19,7 +19,7 @@ namespace Pustok_MVC.Models
         public int Order { get; set; }
         [NotMapped]
         [MaxSize(2*1024*1024)]
-        [CheckImageContent("image/jpeg", "image/png")]
+        [CheckImageContent("image/png","image/jpeg")]
         public IFormFile? ImageFile { get; set; }
     }
 }

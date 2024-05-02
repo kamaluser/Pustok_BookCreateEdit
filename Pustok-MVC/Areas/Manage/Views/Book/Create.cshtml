@@ -17,7 +17,7 @@
     </div>
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <form class="user" asp-action="create" method="post" enctype="multipart/form-data">
+            <form class="user" asp-action="Create" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="Name">Name</label>
                     <input asp-for="Name" class="form-control" id="Name" placeholder=" ">
@@ -36,6 +36,11 @@
                 <div class="form-group">
                     <label for="GenreId">Genre</label>
                     <select asp-for="GenreId" class="form-control" id="GenreId" asp-items="@(new SelectList(ViewBag.Genres,nameof(Genre.Id),nameof(Genre.Name)))">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="AuthorId">Tags</label>
+                    <select asp-for="TagIds" class="form-control" id="TagIds" asp-items="@(new SelectList(ViewBag.Tags,nameof(Tag.Id),nameof(Tag.Name)))">
                     </select>
                 </div>
                 <div class="row">
@@ -61,8 +66,8 @@
                         </div>
                     </div>
                 </div>
-                
-                
+
+
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-4">
@@ -94,6 +99,35 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="imgInput">PosterFile</label>
+                            <input asp-for="PosterFile" class="form-control imgInput" placeholder=" ">
+                            <div class="preview-box">
+                                <img width="200" class="previewImg" />
+                            </div>
+                            <span class="text-danger" asp-validation-for="PosterFile"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="imgInput">HoverPosterFile</label>
+                            <input asp-for="HoverPosterFile" class="form-control imgInput" placeholder=" ">
+                            <div class="preview-box">
+                                <img width="200" class="previewImg" />
+                            </div>
+                            <span class="text-danger" asp-validation-for="HoverPosterFile"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="imgInput">ImageFiles</label>
+                    <input asp-for="ImageFiles" class="form-control imgInput" placeholder=" ">
+                    <div class="preview-box">
+                        <img width="200" class="previewImg" />
+                    </div>
+                    <span class="text-danger" asp-validation-for="ImageFiles"></span>
+                </div>
+
 
                 <button class="btn btn-primary" type="submit">
                     Create Book

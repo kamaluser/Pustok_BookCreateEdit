@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8tra0mU2eD25UhnEQK5F+9cb2Y/L42u/cVwh11WVZndSuLoMKeNZqhZX0j1q/IrLjM6W7Wxd7vQ80RVJWoN8IQ==",
+  "dgSpecHash": "k5C80KV36mu/KNx+LaRsBEA6PGkU6CPpDuyjyqLbDktFbnBlrZ4hS8u2IV0/SJdwCbUcoNsGiILvFCZT0XnLjw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kamal\\Desktop\\Pustok_Dashboard\\Pustok-MVC\\Pustok-MVC.csproj",
+  "projectFilePath": "C:\\Users\\kamal\\Desktop\\Pustok_BookCreateEdit\\Pustok-MVC\\Pustok-MVC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kamal\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\kamal\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
