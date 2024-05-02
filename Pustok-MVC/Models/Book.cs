@@ -36,7 +36,7 @@ namespace Pustok_MVC.Models
         public List<BookImage>? BookImages { get; set; } = new List<BookImage>();
         public Author? Author { get; set; }
         public Genre? Genre { get; set; }
-        public List<BookTag> BookTags { get; set; }
+        public List<BookTag>? BookTags { get; set; }
         [NotMapped]
         public List<int>? TagIds { get; set; } = new List<int>();
     }

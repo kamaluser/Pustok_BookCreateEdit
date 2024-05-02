@@ -113,7 +113,7 @@
                             <label for="imgInput">HoverPosterFile</label>
                             <input asp-for="HoverPosterFile" class="form-control imgInput" placeholder=" ">
                             <div class="preview-box">
-                                <img width="200" class="previewImg" src="~/manage/uploads/books/@Model.BookImages.FirstOrDefault(x=>x.PosterStatus==false)?.Name />
+                                <img width="200" class="previewImg" src="~/manage/uploads/books/@Model.BookImages.FirstOrDefault(x=>x.PosterStatus==false)?.Name" />
                             </div>
                             <span class="text-danger" asp-validation-for="HoverPosterFile"></span>
                         </div>

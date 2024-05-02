@@ -165,28 +165,6 @@ namespace Pustok_MVC.Areas.Manage.Controllers
         }*/
 
 
-        public IActionResult Edit(int id)
-        {
-
-
-            Book books = _context.Books.Include(x => x.BookImages).Include(x => x.BookTags).FirstOrDefault(x => x.Id == id);
-
-
-
-            if (books == null)
-            {
-                return View("error");
-            }
-
-            books.TagIds = books.BookTags.Select(x => x.TagId).ToList();
-
-
-            ViewBag.Authors = _context.Authors.ToList();
-            ViewBag.Genres = _context.Genres.ToList();
-            ViewBag.Tags = _context.Tags.ToList();
-            return View(books);
-        }
-
         [HttpPost]
         public IActionResult Edit(Book book)
         {
@@ -198,7 +176,7 @@ namespace Pustok_MVC.Areas.Manage.Controllers
                 return View("Error");
             }
 
-            if(existsbook.BookImages == null)
+            if (existsbook.BookImages == null)
             {
                 return RedirectToAction("notfound", "error");
             }
@@ -286,7 +264,7 @@ namespace Pustok_MVC.Areas.Manage.Controllers
 
             _context.SaveChanges();
 
-            if(removeableFile.Count > 0)
+            if (removeableFile.Count > 0)
             {
                 FileManager.DeleteAll(_env.WebRootPath, "manage/uploads/books", removeableFile);
             }
@@ -295,7 +273,28 @@ namespace Pustok_MVC.Areas.Manage.Controllers
         }
 
 
-        /*[HttpPost]
+        public IActionResult Edit(int id)
+        {
+            Book books = _context.Books.Include(x => x.BookImages).Include(x => x.BookTags).FirstOrDefault(x => x.Id == id);
+
+
+
+            if (books == null)
+            {
+                return View("error");
+            }
+
+            books.TagIds = books.BookTags.Select(x => x.TagId).ToList();
+
+
+            ViewBag.Authors = _context.Authors.ToList();
+            ViewBag.Genres = _context.Genres.ToList();
+            ViewBag.Tags = _context.Tags.ToList();
+            return View(books);
+        }
+/*
+
+        [HttpPost]
         public IActionResult Edit(Book book)
         {
             Book? existBook = _context.Books.Find(book.Id);
@@ -306,6 +305,7 @@ namespace Pustok_MVC.Areas.Manage.Controllers
 
             if (book.GenreId != existBook.GenreId && !_context.Genres.Any(x => x.Id == book.GenreId))
                 return RedirectToAction("notfound", "error");
+
 
             existBook.Name = book.Name;
             existBook.Desc = book.Desc;
